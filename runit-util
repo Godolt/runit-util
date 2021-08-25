@@ -16,14 +16,14 @@ echo
 
 }
 
+# Variables
 arg=$2
 arg2=$3
-# Checks os-release for artix branding
 service1="/var/service"
 service2="/etc/sv/service"
 service3="/etc/runit/runsvdir"
 
-# Checks artix variable, artix uses different directories to store services so its neccessary to verify what distro the user is running.
+# Checks for artix branding, artix uses different directories to store services so its neccessary to verify what distro the user is running.
 if [[ $(cat /etc/os-release | grep "ID=artix") = "ID=artix" ]]
 then
 service1="/run/runit/service"
