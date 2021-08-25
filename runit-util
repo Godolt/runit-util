@@ -16,8 +16,8 @@ echo
 
 }
 
-arg="invalid"
-arg2="invalid"
+arg=$2
+arg2=$3
 # Checks os-release for artix branding
 artix=`cat /etc/os-release | grep "ID=artix"`
 service1="/var/service"
@@ -37,32 +37,32 @@ Run()
 {
 # Runs a service
 echo "Running service.."
-echo "ln -s $service2/$arg $service1"
-ln -s $service2/$arg $service1
+echo "ln -s $service2/${arg:?is not set} $service1"
+ln -s $service2/${arg:?is not set} $service1
 }
 
 Add()
 {
 # Adds a service to specified runlevel.
 echo "Adding service.."
-echo "ln -s $service2/$arg $service3/$arg2"
-ln -s $service2/$arg $service3/$arg2
+echo "ln -s $service2/${arg:?is not set} $service3/${arg2:=default}"
+ln -s $service2/${arg:?is not set} $service3/${arg2:=default}
 }
 
 Stop()
 {
 # Stops a service
 echo "Stopping service.."
-echo "rm $service1/$arg"
-rm $service1/$arg
+echo "rm $service1/${arg:?is not set}"
+rm $service1/${arg:?is not set}
 }
 
 Delete()
 {
 # Deletes a service from specified runlevel.
 echo "Deleting service..."
-echo "rm $service3/$arg2/$arg"
-rm $service3/$arg2/$arg
+echo "rm $service3/${arg2:=default}/${arg:?is not set}"
+rm $service3/${arg2:=default}/${arg:?is not set}
 }
 
 while getopts ":hrasd" option; do
@@ -88,15 +88,9 @@ while getopts ":hrasd" option; do
          exit;;
       d) # delete a service
          arg=$2
-         arg2=$3
          Delete
          exit;;
    esac
 done
 
 echo "No parameters, do "runit-util -h" for options"
-
-
-
-
-
