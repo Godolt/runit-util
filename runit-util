@@ -20,7 +20,7 @@ echo
 arg=$2
 arg2=$3
 service1="/var/service"
-service2="/etc/sv/service"
+service2="/etc/sv"
 service3="/etc/runit/runsvdir"
 
 # Checks for artix branding, artix uses different directories to store services so its neccessary to verify what distro the user is running.
