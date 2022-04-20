@@ -2,7 +2,7 @@
 A runit helper utility. Designed for Void Linux and Artix-runit.
 
 Installation:\
-`git clone https://github.com/Godolt/runit-util.git`\
+`git clone https://github.com/Yr1t/runit-util.git`\
 `cd runit-util`\
 `sudo make install`
 
